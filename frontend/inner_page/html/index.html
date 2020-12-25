@@ -8,17 +8,27 @@
     <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 
-<body onload="process()">
-    <div class="wrapper">
-        <h1>Hello! <br> We start from this template page!</h1>
-        <h2>Good luck, have fun!</h2>
-        <!-- <div id="time"></div> -->
+<body>
+    <div id="wrapper">
+        <div id="head-text">
+            <h1>Hello! <br> We start from this template page!</h1>
+            <h2>Good luck have fun!</h2>
+        </div>
+        <div id="input-forms">
+            <select name="wireless" class="similar-input">
+                <option selected="selected">Choose your WiFi...</option>
+                <option value="lion">First</option>
+                <option value="tiger">Second</option>
+            </select>
+            <input type="password" placeholder="Password..." class="similar-input" id="password"></input>
+        </div>
+        <!-- <div id="time"></div> 
         <div class="button">
             <h3>This switch toggle</h3>
             <div class="switch-btn" onclick="pr()"></div>
             <br>
             <div id="state">OFF</div>
-        </div>
+        </div>-->
     </div>
 </body>
 

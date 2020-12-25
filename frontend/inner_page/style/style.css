@@ -1,14 +1,61 @@
-body {
-  font-family: "Verdana", Times, serif;
-}
-.wrapper {
-  margin: 0px auto;
-  text-align: center;
+html{
+  height: 100%;
 }
 
-.wrapper > h1{
-    color: darkgray;
+body {
+  font-family: "Verdana", Times, serif;
+  margin: 0;
+  height: 100%;
+  background-color: #fafafa;
 }
+
+#wrapper {
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#head-text {
+  text-align: center;
+  color: rgb(119, 119, 119);
+}
+
+#input-forms{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.similar-input{
+  margin:10px 0;
+  padding:10px;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  border-radius: 5px;
+  border: 1px solid #eee;
+  transition: .3s border-color;
+  transition: .3s box-shadow;
+  color: #777777;
+}
+
+#input-forms > input {
+  width: 100%;
+}
+
+#input-forms  > select {
+  width: 110%;
+}
+
+#input-forms > .similar-input:hover {
+  border: 1px solid darkorange;
+  box-shadow:0 0 10px rgba(180, 103, 8, 1);
+  
+}
+
+
 
 #time{
     margin: 50px auto;

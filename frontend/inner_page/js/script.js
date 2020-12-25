@@ -1,5 +1,11 @@
 var xmlHttp = CreateRequest();
 
+
+// window.onload = function() {
+//     process();
+// }
+
+
 function CreateRequest() {
     var Request = false;
 
