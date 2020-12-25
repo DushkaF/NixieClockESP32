@@ -1,12 +1,12 @@
 body {
   font-family: "Verdana", Times, serif;
 }
-.forma {
+.wrapper {
   margin: 0px auto;
   text-align: center;
 }
 
-.forma > h1{
+.wrapper > h1{
     color: darkgray;
 }
 
