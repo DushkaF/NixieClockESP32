@@ -6,7 +6,9 @@ body {
   font-family: "Verdana", Times, serif;
   margin: 0;
   height: 100%;
-  background-color: #fafafa;
+  /*background-color: #fafafa;*/
+  background: rgb(0,4,25);
+  background: radial-gradient(circle, rgba(0,4,25,1) 0%, rgba(43,16,112,1) 89%, rgba(61,32,135,1) 100%);
 }
 
 #wrapper {
@@ -50,9 +52,8 @@ body {
 }
 
 #input-forms > .similar-input:hover {
-  border: 1px solid darkorange;
-  box-shadow:0 0 10px rgba(180, 103, 8, 1);
-  
+  border: 2px solid darkorange;
+  box-shadow: 0 0 20px rgba(180, 103, 8, 1), inset 0 0 5px rgba(180, 103, 8, 1);
 }
 
 
