@@ -1,30 +1,87 @@
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Verdana", Times, serif;
+  margin: 0;
+  height: 100%;
+  /*background-color: #fafafa;*/
+  background: rgb(0, 4, 25);
+  background: radial-gradient(
+    circle,
+    rgba(0, 4, 25, 1) 0%,
+    rgba(43, 16, 112, 1) 89%,
+    rgba(61, 32, 135, 1) 100%
+  );
 }
-.forma {
+
+#wrapper {
   margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#head-text {
   text-align: center;
+  color: rgb(153, 153, 153);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3), 1px 1px 1px rgba(21, 20, 20, 0.92);
 }
 
-.forma > h1{
-    color: darkgray;
+#input-forms {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#time{
-    margin: 50px auto;
-    color: darkorange;
-    font-size:80px;
-    height: 100px;
+#input-forms > input {
+  width: 100%;
 }
 
-.button > h3{
+#input-forms > input::placeholder{
+  color: rgb(153, 153, 153);
+}
+
+#input-forms > select {
+  width: 110%;
+}
+
+.similar-input {
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  border: 1px solid rgb(163, 163, 163);
+  transition: 0.3s border-color;
+  transition: 0.3s box-shadow;
+  color: rgb(153, 153, 153);
+  background-color: rgba(255, 123, 0, 0.384);
+}
+
+#input-forms > .similar-input:hover {
+  border: 2px solid darkorange;
+  box-shadow: 0 0 20px rgba(180, 103, 8, 1), inset 0 0 5px rgba(180, 103, 8, 1);
+}
+
+#time {
+  margin: 50px auto;
+  color: darkorange;
+  font-size: 80px;
+  height: 100px;
+}
+
+.button > h3 {
   color: darkgray;
 }
 
 .switch-btn {
   display: inline-block;
   width: 72px; /* ширина */
-  height: 38px; /* высота */ 
+  height: 38px; /* высота */
   background: darkgray; /* цвет фона */
   z-index: 0;
   margin: 0;
@@ -37,7 +94,7 @@ body {
 .switch-btn::after {
   content: "";
   height: 32px; /* высота кнопки */
-  width: 32px; /* ширина кнопки */ 
+  width: 32px; /* ширина кнопки */
   background: #fff; /* цвет кнопки */
   top: 3px; /* положение кнопки по вертикали относительно основы */
   left: 3px; /* положение кнопки по горизонтали относительно основы */
