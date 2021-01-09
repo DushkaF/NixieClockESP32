@@ -12,8 +12,8 @@ class CaptiveRequestHandler : public AsyncWebHandler {
     CaptiveRequestHandler() {
       /* THIS IS WHERE YOU CAN PLACE THE CALLS */
 
-      server.on("/Bootstrap.min.css", HTTP_GET, [](AsyncWebServerRequest *request) {
-        AsyncWebServerResponse* response = request->beginResponse(SPIFFS, "/Bootstrap.min.css", "text/css");
+      server.on("/style/style.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+        AsyncWebServerResponse* response = request->beginResponse(SPIFFS, "/inner_page/style/style.css", "text/css");
          request->send(response);
       });
     }
@@ -25,7 +25,7 @@ class CaptiveRequestHandler : public AsyncWebHandler {
     }
 
     void handleRequest(AsyncWebServerRequest *request) {
-      request->send(SPIFFS, "/index.html", String(), false);
+      request->send(SPIFFS, "/inner_page/html/index.html", String(), false);
     }
 };
 
@@ -38,14 +38,14 @@ void setup() {
     return;
   }
 
-  WiFi.softAP("esp-captive");
+  WiFi.softAP("NixieClock");
   dnsServer.start(53, "*", WiFi.softAPIP());
 
   server.addHandler(new CaptiveRequestHandler()).setFilter(ON_AP_FILTER);//only when requested from AP
 
-  server.on("/image1", HTTP_GET, [](AsyncWebServerRequest * request) {
+  /*server.on("/image1", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/image1.jpg", "image/jpg"); // this part has been modified
-  });
+  });*/
 
   server.begin();
 }
