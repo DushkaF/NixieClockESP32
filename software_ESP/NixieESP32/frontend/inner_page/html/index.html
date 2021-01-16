@@ -11,16 +11,16 @@
 <body>
     <div id="wrapper">
         <div id="head-text">
-            <h1>Hello! <br> We start from this template page!</h1>
-            <h2>Good luck have fun!</h2>
+            <h1>Hello! <br> We start from this page!</h1>
+            <h2>Choose your network for start:</h2>
         </div>
         <div id="input-forms">
-            <select name="wireless" class="similar-input">
+            <select name="wireless" class="similar-input" id="APlist">
                 <option selected="selected">Choose your WiFi...</option>
-                <option value="lion">First</option>
-                <option value="tiger">Second</option>
+                <option value="404" id="not-found">Access Point not found</option>
             </select>
             <input type="password" placeholder="Password..." class="similar-input" id="password"></input>
+            <button id="connect">Connect</button>
         </div>
         <!-- <div id="time"></div> 
         <div class="button">

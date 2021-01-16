@@ -42,12 +42,16 @@ body {
   width: 100%;
 }
 
-#input-forms > input::placeholder{
+/*#input-forms > input::placeholder{
   color: rgb(153, 153, 153);
-}
+}*/
 
 #input-forms > select {
   width: 110%;
+}
+
+select > option{
+  color:rgb(0, 102, 161);
 }
 
 .similar-input {
@@ -65,6 +69,24 @@ body {
 #input-forms > .similar-input:hover {
   border: 2px solid darkorange;
   box-shadow: 0 0 20px rgba(180, 103, 8, 1), inset 0 0 5px rgba(180, 103, 8, 1);
+}
+
+#connect{
+  width: 50%;
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  border: 1px solid rgb(163, 163, 163);
+  transition: 0.3s border-color;
+  transition: 0.3s box-shadow;
+  color: rgb(153, 153, 153);
+  background-color: rgba(0, 153, 255, 0.384);
+}
+
+#connect:hover {
+  border: 2px solid rgb(0, 162, 255);
+  box-shadow: 0 0 20px rgb(0, 162, 255), inset 0 0 5px rgb(0, 162, 255);
 }
 
 #time {
