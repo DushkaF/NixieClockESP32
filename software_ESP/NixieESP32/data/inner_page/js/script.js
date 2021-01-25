@@ -1,4 +1,3 @@
-var xmlHttp = CreateRequest();
 
 
 window.onload = function () {
@@ -12,12 +11,23 @@ function process(){
     }
 }
 
-
 function getAPList() {
-    makeGETRequest('../APlist.json', decodeJSONlist);
+    makeGETRequest('../APlist.json', decodeJSONlist, hiddenForm);
+}
+
+function hiddenForm(){
+    console.log("hidden");
+    document.getElementById("input-forms").hidden = true;
+    document.getElementById("floatingBarsG").hidden = false;
+}
+
+function showForm(){
+    document.getElementById("input-forms").hidden = false;
+    document.getElementById("floatingBarsG").hidden = true;
 }
 
 function decodeJSONlist(handler) {
+    showForm();
     console.log("content-type: ", handler.getResponseHeader('Content-Type'));
     var respJSON = JSON.parse(handler.responseText);
     console.log(respJSON["name"]);
@@ -41,12 +51,15 @@ function pasteInListOnPage(list) {
 function sendSelectedAP(){
     var selectList = document.getElementById("APlist");
     var passForm = document.getElementById("password");
-    var sendedAP = {"name": selectList.options[selectList.selectedIndex].text, "password": passForm.value};
-    console.log(sendedAP);
-    alert(sendedAP["name"] + " " + sendedAP["password"]);
+    var sendAPjson = {"name": selectList.options[selectList.selectedIndex].text, "password": passForm.value};
+    console.log(sendAPjson);
+    makePOSTRequest("/selectedAp", sendAPjson, function(){
+        window.location.href = 'https://yandex.ru/time/'}, hiddenForm);
+    //alert(sendAPjson["name"] + " " + sendAPjson["password"]);
 }
 
-function makeGETRequest(path, func) {
+function makeGETRequest(path, func, badFunc = function(){;}) {
+    var xmlHttp = CreateRequest();
     xmlHttp.open('GET', path, true);
     xmlHttp.onreadystatechange = function () {
         if (this.readyState == 4) {
@@ -54,14 +67,36 @@ function makeGETRequest(path, func) {
                 func(this);
             } else {
                 console.log("Not 200");
+                badFunc(this);
             }
         } else {
             console.log("not loaded");
+            badFunc(this);
         }
     };
     xmlHttp.send(null);
 }
 
+function makePOSTRequest(path, json, func = function(){}, badFunc = function(){}){
+    var xmlHttp = CreateRequest();
+    xmlHttp.open('POST', path, true); // Открываем асинхронное соединение
+    xmlHttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8'); // Отправляем кодировку
+    xmlHttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                console.log("POST sended!");
+                func(this);
+            } else {
+                console.log("Send Not 200");
+                badFunc(this);
+            }
+        } else {
+            console.log("send not loaded");
+            badFunc(this);
+        }
+    };
+    xmlHttp.send(JSON.stringify(json)); // Отправляем POST-запрос
+}
 
 function press(a) {
     xmlHttp.open('POST', '/postform/', true); // Открываем асинхронное соединение
@@ -85,7 +120,6 @@ function pr() {
     }
     press(requ);
 }
-//document.getElementsByClassName('switch-btn')[0].onclick = pr;
 
 
 

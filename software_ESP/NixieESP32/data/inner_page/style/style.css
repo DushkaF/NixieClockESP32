@@ -27,7 +27,7 @@ body {
 
 #head-text {
   text-align: center;
-  color: rgb(153, 153, 153);
+  color: rgb(177, 177, 177);
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3), 1px 1px 1px rgba(21, 20, 20, 0.92);
 }
 
@@ -135,4 +135,101 @@ select > option{
   margin: 15pt;
   color: darkgray;
   font-size: 20px;
+}
+
+
+/* ---  for loading animation --- */
+#floatingBarsG{
+	position:relative;
+	width:85px;
+	height:106px;
+}
+
+.blockG{
+	position:absolute;
+	background-color:rgb(255,255,255, 0);
+	width:14px;
+	height:33px;
+	border-radius:11px 11px 0 0;
+	transform:scale(0.4);
+	animation-name:fadeG;
+	animation-duration:1.2s;
+	animation-iteration-count:infinite;
+	animation-direction:normal;
+}
+
+#rotateG_01{
+	left:0;
+	top:39px;
+	animation-delay:0.45s;
+	transform:rotate(-90deg);
+}
+
+#rotateG_02{
+	left:11px;
+	top:14px;
+	animation-delay:0.6s;
+	transform:rotate(-45deg);
+}
+
+#rotateG_03{
+	left:36px;
+	top:4px;
+	animation-delay:0.75s;
+	transform:rotate(0deg);
+}
+
+#rotateG_04{
+	right:11px;
+	top:14px;
+	animation-delay:0.9s;
+	transform:rotate(45deg);
+}
+
+#rotateG_05{
+	right:0;
+	top:39px;
+	animation-delay:1.05s;
+	transform:rotate(90deg);
+}
+
+#rotateG_06{
+	right:11px;
+	bottom:10px;
+	animation-delay:1.2s;
+	transform:rotate(135deg);
+}
+
+#rotateG_07{
+	bottom:0;
+	left:36px;
+	animation-delay:1.35s;
+	transform:rotate(180deg);
+}
+
+#rotateG_08{
+	left:11px;
+	bottom:10px;
+	animation-delay:1.5s;
+	transform:rotate(-135deg);
+}
+
+
+
+@keyframes fadeG{
+	0%{
+    background-color: rgb(177, 177, 177);
+    box-shadow: 0 0 20px rgba(180, 103, 8, 1), inset 0 0 7px rgba(180, 103, 8, 1);
+	}
+
+	100%{
+    background-color:rgba(0,0,0,0);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+	}
+}
+
+/* ---  END for loading animation --- */
+
+[hidden] {
+  display: none !important;
 }
