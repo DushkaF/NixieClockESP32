@@ -5,7 +5,8 @@
 #include <SPIFFS.h>
 #include <ArduinoJson.h>
 
-
+String ssid = "";
+String password = "";
 
 unsigned long last_time = 0;
 
@@ -27,15 +28,6 @@ String getNetworksJSON() {
     Serial.println(" networks found");
     for (int i = 0; i < n; ++i) {
       names.add(WiFi.SSID(i));
-      // Print SSID and RSSI for each network found
-      /*Serial.print(i + 1);
-        Serial.print(": ");
-        Serial.print(WiFi.SSID(i));
-        Serial.print(" (");
-        Serial.print(WiFi.RSSI(i));
-        Serial.print(")");
-        Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN) ? " " : "*");
-        delay(10);*/
     }
   }
   Serial.println("");
@@ -43,6 +35,20 @@ String getNetworksJSON() {
   String JsonLine = "";
   serializeJson(APlist, JsonLine);
   return JsonLine;
+}
+
+void connectToWifi() {
+  String status = "";
+  WiFi.begin(ssid.c_str(), password.c_str());
+  if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    Serial.printf("WiFi Failed!\n");
+    status = "501";
+  } else{
+    status = String(WiFi.localIP());
+    Serial.print("IP Address: ");
+    Serial.println(WiFi.localIP());
+  }
+  //return status;
 }
 
 
@@ -68,22 +74,18 @@ class CaptiveRequestHandler : public AsyncWebHandler {
       });
 
       server.on("/selectedAp", HTTP_POST, [](AsyncWebServerRequest * request) {
-        int params = request->params();
-        Serial.println("get num param: " + String(params));
-        for (int i = 0; i < params; i++) {
-          AsyncWebParameter* p = request->getParam(i);
-          Serial.println(p->value());
-          if (p->isFile()) { //p->isPost() is also true
-            Serial.printf("FILE[%s]: %s, size: %u\n", p->name().c_str(), p->value().c_str(), p->size());
-          } else if (p->isPost()) {
-            Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
-          } else {
-            Serial.printf("GET[%s]: %s\n", p->name().c_str(), p->value().c_str());
-          }
+        if (request->params() > 0) {
+          AsyncWebParameter* p = request->getParam(0);
+          String json = p->value();
+          Serial.println(json);
+          StaticJsonDocument<64> doc;
+          deserializeJson(doc, json);
+          ssid = doc["name"].as<String>();
+          password = doc["password"].as<String>();
+          Serial.println(ssid + " " + password);
         }
-        Serial.println("get list: ");
-        //AsyncWebServerResponse* response = request->beginResponse(200, "application/json",));
         request->send(200);
+        //connectToWifi();
       });
     }
     virtual ~CaptiveRequestHandler() {}
@@ -113,17 +115,12 @@ void setup() {
 
   server.addHandler(new CaptiveRequestHandler()).setFilter(ON_AP_FILTER);//only when requested from AP
 
-  /*server.on("/image1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(SPIFFS, "/image1.jpg", "image/jpg"); // this part has been modified
-    });*/
-
   server.begin();
 }
 
 void loop() {
   dnsServer.processNextRequest();
-
-  /*if (millis() - last_time >= 5000) {
-    Serial.println(getNetworksJSON());
-    last_time = millis();        }*/
+  if(ssid != ""){
+    connectToWifi();
+  }
 }
