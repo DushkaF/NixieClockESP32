@@ -15,7 +15,7 @@ AsyncWebServer server(80);
 String getNetworksJSON() {
   StaticJsonDocument<256> APlist;
   JsonArray names = APlist.createNestedArray("name");
-  
+
   Serial.println("scan start");
   // WiFi.scanNetworks will return the number of networks found
   int n = WiFi.scanNetworks();
@@ -29,13 +29,13 @@ String getNetworksJSON() {
       names.add(WiFi.SSID(i));
       // Print SSID and RSSI for each network found
       /*Serial.print(i + 1);
-      Serial.print(": ");
-      Serial.print(WiFi.SSID(i));
-      Serial.print(" (");
-      Serial.print(WiFi.RSSI(i));
-      Serial.print(")");
-      Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN) ? " " : "*");
-      delay(10);*/
+        Serial.print(": ");
+        Serial.print(WiFi.SSID(i));
+        Serial.print(" (");
+        Serial.print(WiFi.RSSI(i));
+        Serial.print(")");
+        Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN) ? " " : "*");
+        delay(10);*/
     }
   }
   Serial.println("");
@@ -66,22 +66,42 @@ class CaptiveRequestHandler : public AsyncWebHandler {
         AsyncWebServerResponse* response = request->beginResponse(200, "application/json", getNetworksJSON());
         request->send(response);
       });
+
+      server.on("/selectedAp", HTTP_POST, [](AsyncWebServerRequest * request) {
+        int params = request->params();
+        Serial.println("get num param: " + String(params));
+        for (int i = 0; i < params; i++) {
+          AsyncWebParameter* p = request->getParam(i);
+          Serial.println(p->value());
+          if (p->isFile()) { //p->isPost() is also true
+            Serial.printf("FILE[%s]: %s, size: %u\n", p->name().c_str(), p->value().c_str(), p->size());
+          } else if (p->isPost()) {
+            Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
+          } else {
+            Serial.printf("GET[%s]: %s\n", p->name().c_str(), p->value().c_str());
+          }
+        }
+        Serial.println("get list: ");
+        //AsyncWebServerResponse* response = request->beginResponse(200, "application/json",));
+        request->send(200);
+      });
     }
     virtual ~CaptiveRequestHandler() {}
 
-    bool canHandle(AsyncWebServerRequest *request) {
+    bool canHandle(AsyncWebServerRequest * request) {
       //request->addInterestingHeader("ANY");
       return true;
     }
 
-    void handleRequest(AsyncWebServerRequest *request) {
+    void handleRequest(AsyncWebServerRequest * request) {
       request->send(SPIFFS, "/inner_page/html/index.html", String(), false);
     }
 };
 
 void setup() {
-  WiFi.mode(WIFI_AP_STA);
   Serial.begin(115200);
+  Serial.println("Start");
+  WiFi.mode(WIFI_AP_STA);
 
   if (!SPIFFS.begin()) {
     Serial.println("An Error has occurred while mounting SPIFFS");
@@ -105,6 +125,5 @@ void loop() {
 
   /*if (millis() - last_time >= 5000) {
     Serial.println(getNetworksJSON());
-    last_time = millis();
-  }*/
+    last_time = millis();        }*/
 }
