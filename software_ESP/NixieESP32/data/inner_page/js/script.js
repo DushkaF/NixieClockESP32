@@ -80,7 +80,7 @@ function makeGETRequest(path, func, badFunc = function(){;}) {
 function makePOSTRequest(path, json, func = function(){}, badFunc = function(){}){
     var xmlHttp = CreateRequest();
     xmlHttp.open('POST', path, true); // Открываем асинхронное соединение
-    xmlHttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8'); // Отправляем кодировку
+    xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8'); // Отправляем кодировку
     xmlHttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
@@ -95,7 +95,7 @@ function makePOSTRequest(path, json, func = function(){}, badFunc = function(){}
             badFunc(this);
         }
     };
-    xmlHttp.send(JSON.stringify(json)); // Отправляем POST-запрос
+    xmlHttp.send("data=" + JSON.stringify(json)); // Отправляем POST-запрос
 }
 
 function press(a) {
