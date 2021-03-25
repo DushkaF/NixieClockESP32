@@ -5,6 +5,7 @@ html {
 
 body {
   font-family: "Verdana", Times, serif;
+  -webkit-appearance: none;
   margin: 0;
   height: 100%;
   /*background-color: #fafafa;*/
@@ -49,6 +50,10 @@ body {
 
 #input-forms > select {
   width: 110%;
+}
+
+select{
+  -webkit-appearance: none;
 }
 
 select > option{
