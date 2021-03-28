@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Control</title>
     <script src="../js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
@@ -10,12 +11,20 @@
 
 <body>
     <div id="wrapper">
-        <div id="head-text">
-            <h1>Hello! <br> We start from this page!</h1>
-            <h2>Choose your network for start:</h2>
+        <div id="head-text" class="headers">
+            <h1 id="hello" class="animate" hidden>Hello</h1>
+            <h3 id="start" class="animate" hidden>We start from this page</h3>
         </div>
         
-        <div id="floatingBarsG">
+        <div id ="load-text" class="headers" hidden>
+            <h3>Try to connecting..</h3>
+        </div>
+        
+        <div id ="connected-text" class="headers" hidden>
+            <h3>Ok, let's continue</h3>
+        </div>
+        
+        <div id="floatingBarsG" class="last-animate" hidden>
             <div class="blockG" id="rotateG_01"></div>
             <div class="blockG" id="rotateG_02"></div>
             <div class="blockG" id="rotateG_03"></div>
@@ -27,20 +36,24 @@
         </div>
         
         <div id="input-forms" hidden>
+            <h2>Choose your network:</h2>
             <select name="wireless" class="similar-input" id="APlist">
                 <option selected="selected">Choose your WiFi...</option>
                 <option value="404" id="not-found">Access Point not found</option>
             </select>
             <input type="password" placeholder="Password..." class="similar-input" id="password"></input>
-            <button id="connect">Connect</button> -->
+            <button id="connect">Connect</button>
+            <a id="reload-AP">Can't see your net?</a>
         </div>
-        <!-- <div id="time"></div> 
-        <div class="button">
-            <h3>This switch toggle</h3>
-            <div class="switch-btn" onclick="pr()"></div>
-            <br>
-            <div id="state">OFF</div>
-        </div>-->
+        
+        <div id="IP-link" hidden>
+            <div id="link-description">
+                <p>Paste this link into your browser</p>
+            </div>
+            <div id="link-box">
+                <h3>Copy link</h3>
+            </div>
+        </div>
     </div>
 </body>
 

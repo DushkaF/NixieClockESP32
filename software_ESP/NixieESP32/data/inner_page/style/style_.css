@@ -1,0 +1,253 @@
+html {
+  height: 100%;
+  -webkit-appearance: none;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-appearance: none;
+  margin: 0;
+  height: 100%;
+  /*background-color: #fafafa;*/
+  background: rgb(0, 4, 25);
+  background: radial-gradient(
+    circle,
+    rgba(0, 4, 25, 1) 0%,
+    rgba(43, 16, 112, 1) 89%,
+    rgba(61, 32, 135, 1) 100%
+  );
+}
+
+#wrapper {
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#head-text {
+  text-align: center;
+  color: rgb(177, 177, 177);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3), 1px 1px 1px rgba(21, 20, 20, 0.92);
+}
+
+#input-forms {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#input-forms > input {
+  width: 100%;
+}
+
+/*#input-forms > input::placeholder{
+  color: rgb(153, 153, 153);
+}*/
+
+#input-forms > select {
+  width: 110%;
+}
+
+select{
+  -webkit-appearance: none;
+}
+
+select > option{
+  color:rgb(0, 102, 161);
+}
+
+.similar-input {
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  border: 0px solid rgb(163, 163, 163);
+  transition: 0.3s border-color;
+  transition: 0.3s box-shadow;
+  color: rgb(153, 153, 153);
+  background-color: rgba(255, 123, 0, 0.384);
+}
+
+#input-forms > .similar-input:hover {
+  border: 2px solid darkorange;
+  box-shadow: 0 0 20px rgba(180, 103, 8, 1), inset 0 0 5px rgba(180, 103, 8, 1);
+}
+
+#button-group{
+  width: 110%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#connect{
+  width: 70%;
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  border: 0px solid rgb(163, 163, 163);
+  transition: 0.3s border-color;
+  transition: 0.3s box-shadow;
+  color: rgb(153, 153, 153);
+  background-color: rgba(0, 153, 255, 0.384);
+}
+
+#connect:hover {
+  border: 2px solid rgb(0, 162, 255);
+  box-shadow: 0 0 20px rgb(0, 162, 255), inset 0 0 5px rgb(0, 162, 255);
+}
+
+#reload-AP{
+  width: 20%;
+  margin: 10px 0;
+  padding: 5px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  border: 0px solid rgb(163, 163, 163);
+  transition: 0.3s border-color;
+  transition: 0.3s box-shadow;
+  color: rgb(153, 153, 153);
+  font-size: 20px;
+  background-color: rgba(0, 153, 255, 0.384);
+}
+
+#reload-AP:hover {
+  border: 2px solid rgb(0, 162, 255);
+  box-shadow: 0 0 20px rgb(0, 162, 255), inset 0 0 5px rgb(0, 162, 255);
+}
+
+
+/* -------- for link -------- */
+#IP-link {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#link-box{ 
+  width: 90%;
+  text-align: center;
+  border: 0px solid rgb(123, 153, 128);
+  border-radius: 5px;
+  background-color: rgba(9, 88, 46, 0.815);
+  transition: 1s border-color;
+  transition: 0.3s box-shadow;
+  color: rgb(211, 211, 211);
+}
+
+#link-box:hover {
+  border: 2px solid rgb(57,178,20);
+  box-shadow: 0 0 20px rgb(82, 255, 38), inset 0 0 5px rgb(8, 253, 0);
+}
+
+#link-description{
+  width: 100%;
+  text-align: center;
+  color: rgb(177, 177, 177);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3), 1px 1px 1px rgba(21, 20, 20, 0.92);
+
+}
+
+
+/* ---  for loading animation --- */
+#floatingBarsG{
+	position:relative;
+	width:85px;
+	height:106px;
+}
+
+.blockG{
+	position:absolute;
+	background-color:rgb(255,255,255, 0);
+	width:14px;
+	height:33px;
+	border-radius:11px 11px 0 0;
+	transform:scale(0.4);
+	animation-name:fadeG;
+	animation-duration:1.2s;
+	animation-iteration-count:infinite;
+	animation-direction:normal;
+}
+
+#rotateG_01{
+	left:0;
+	top:39px;
+	animation-delay:0.45s;
+	transform:rotate(-90deg);
+}
+
+#rotateG_02{
+	left:11px;
+	top:14px;
+	animation-delay:0.6s;
+	transform:rotate(-45deg);
+}
+
+#rotateG_03{
+	left:36px;
+	top:4px;
+	animation-delay:0.75s;
+	transform:rotate(0deg);
+}
+
+#rotateG_04{
+	right:11px;
+	top:14px;
+	animation-delay:0.9s;
+	transform:rotate(45deg);
+}
+
+#rotateG_05{
+	right:0;
+	top:39px;
+	animation-delay:1.05s;
+	transform:rotate(90deg);
+}
+
+#rotateG_06{
+	right:11px;
+	bottom:10px;
+	animation-delay:1.2s;
+	transform:rotate(135deg);
+}
+
+#rotateG_07{
+	bottom:0;
+	left:36px;
+	animation-delay:1.35s;
+	transform:rotate(180deg);
+}
+
+#rotateG_08{
+	left:11px;
+	bottom:10px;
+	animation-delay:1.5s;
+	transform:rotate(-135deg);
+}
+
+
+
+@keyframes fadeG{
+	0%{
+    background-color: rgb(177, 177, 177);
+    box-shadow: 0 0 20px rgba(180, 103, 8, 1), inset 0 0 7px rgba(180, 103, 8, 1);
+	}
+
+	100%{
+    background-color:rgba(0,0,0,0);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+	}
+}
+
+/* ---  END for loading animation --- */
+
+[hidden] {
+  display: none !important;
+}
