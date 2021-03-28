@@ -25,8 +25,7 @@ html {
 }
 
 body {
-  font-family: SF UI Display !important;
-  /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
+  font-family: SF UI Display, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-appearance: none;
   margin: 0;
   height: 100%;
@@ -42,7 +41,8 @@ body {
 
 h1,
 h2,
-h3, p {
+h3,
+p {
   margin: 0;
 }
 
@@ -133,7 +133,7 @@ select > option {
 }
 
 .similar-input {
-  font-family: SF UI Display !important;
+  font-family: SF UI Display, -apple-system, BlinkMacSystemFont, sans-serif;
   height: 50px;
   margin: 20px 0;
   padding: 10px;
@@ -229,7 +229,6 @@ select > option {
   transition: 0.3s box-shadow;
   color: #e3e3e3;
 
-  font-family: SF UI Display;
   font-style: normal;
   font-weight: 200;
   font-size: 30px;
@@ -246,10 +245,10 @@ select > option {
   margin-bottom: 30px;
   text-align: center;
   font-style: normal;
-font-weight: 200;
-font-size: 30px;
-line-height: 36px;
-text-align: center;
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
 }
 
 /* ---  for loading animation --- */
