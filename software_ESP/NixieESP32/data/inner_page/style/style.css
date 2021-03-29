@@ -103,6 +103,7 @@ p {
 
 #input-forms {
   width: 100%;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -220,17 +221,21 @@ select > option {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(281.88deg, #0e5129 0%, #2e8a1f 94.97%),
-    rgba(19, 162, 59, 0.58);
-  border: 2px solid #20b812;
+  /* background: linear-gradient(281.88deg, #0e5129 0%, #2e8a1f 94.97%),
+    rgba(19, 162, 59, 0.58); */
+  background-color: rgb(52,199,89);
+  border: 0px solid #20b812;
   box-sizing: border-box;
-  border-radius: 9px;
+  border-radius: 25px;
   transition: 1s border-color;
   transition: 0.3s box-shadow;
   color: #e3e3e3;
+}
 
+
+#link-box > h3{
   font-style: normal;
-  font-weight: 200;
+  font-weight: 500;
   font-size: 30px;
   line-height: 36px;
 }
