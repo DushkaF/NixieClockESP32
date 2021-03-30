@@ -170,6 +170,23 @@ const char index_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 
+void setRoutesForNetwork(){
+  server.on("/style/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
+        AsyncWebServerResponse* response = request->beginResponse(SPIFFS, "/home_page/style/style.css", "text/css");
+        request->send(response);
+      });
+
+      server.on("/js/script.js", HTTP_GET, [](AsyncWebServerRequest * request) {
+        AsyncWebServerResponse* response = request->beginResponse(SPIFFS, "/home_page/js/script.js");
+        request->send(response);
+      });
+  
+      server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
+        request->send(SPIFFS, "/home_page/html/index.html", String(), false);
+      });
+}
+
+
 void setup() {
   Serial.begin(115200);
   Serial.println("Start");
@@ -210,10 +227,10 @@ void loop() {
       Serial.println(WiFi.localIP());
       dnsServer.stop();
       server.reset();
-
-      server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
-        request->send_P(200, "text/html", index_html);
-      });
+//      server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+//        request->send_P(200, "text/html", index_html);
+//      });
+      setRoutesForNetwork();
       server.begin();
     }
   }

@@ -1,28 +1,31 @@
 window.onload = function () {
+    UTCoffsetSelectUpload();
     greatView().then(function(done) {
-        getAPList();
+        showPage();
         process();
     });
 }
 
-var animatedCount = 0;
 
 function animatedText(delay) {
+    var animatedCount = 0; 
     var elem = document.getElementsByClassName('animate');
-    console.log(elem);
+    // console.log(elem);
     for (var i = 0; i < elem.length; i++) {
         console.log(elem[i]);
         setTimeout(function (item) {
             item.hidden = false;
-            animatedCount++;
-        }, i * 1000, elem[i]);
+        }, (elem[i].getAttribute("number") - 1) * delay, elem[i]);
+        if (animatedCount < elem[i].getAttribute("number"))
+            animatedCount = elem[i].getAttribute("number");
     }
-    return elem.length;
+    return animatedCount;
 }
 
 function greatView() {
     var delay = 1200;
     var count = animatedText(delay);
+    console.log("count", count);
     var promise = new Promise(function (resolve, reject) {
         window.setTimeout(function () {
             resolve('done!');
@@ -32,15 +35,29 @@ function greatView() {
 }
 
 function process() {
-    document.getElementById("connect").onclick = function () {
-        sendSelectedAP();
+    document.getElementById("next").onclick = function () {
+        var page = document.getElementById("UTC-page");
+        page.classList.add("outside-left-screen");
+        // page.hidden = true;
     }
-    document.getElementById("link-box").onclick = function () {
-        window.location.href = 'https://yandex.ru/time/';
+}
+
+function showPage(){
+    var page = document.getElementById("UTC-page");
+    page.classList.remove("outside-right-screen");
+    document.getElementById("setiings-place").hidden = false;
+}
+
+function UTCoffsetSelectUpload(){
+    var date = new Date();
+    var currentTimeZoneOffsetInHours = -date.getTimezoneOffset()/60;
+    
+    var select = document.getElementById("UTC-offset");
+    for (var i = -12; i <= 14; i++){
+        let newOption = new Option(String((i > 0 ? "+" : " ") + i), i);
+        select.append(newOption);
     }
-    document.getElementById("reload-AP").onclick = function () {
-        getAPList();
-    }
+    select.selectedIndex = currentTimeZoneOffsetInHours + 12;
 }
 
 function getAPList() {
@@ -118,23 +135,6 @@ function sendSelectedAP() {
         waitGET(request, path, func);
     });
     //alert(sendAPjson["name"] + " " + sendAPjson["password"]);
-}
-
-function showLinkIP(handler) {
-    var respJSON = JSON.parse(handler.responseText);
-    var IPlink = respJSON["ip"];
-    document.getElementById("link-box").onclick = function () {
-        var link = IPlink;
-        copyToClipboard(link);
-        window.open(link, '_system');
-        makeGETRequest('/redirected', function () { });
-        window.location.href = link;
-    }
-    document.getElementById("input-forms").hidden = true;
-    document.getElementById("load-text").hidden = true;
-    document.getElementById("floatingBarsG").hidden = true;
-    document.getElementById("connected-text").hidden = false;
-    document.getElementById("IP-link").hidden = false;
 }
 
 function makeGETRequest(path, func, badFunc = function () { ; }) {
